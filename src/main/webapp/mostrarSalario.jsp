@@ -17,7 +17,6 @@
 <c:if test="${salario != null}">
     <div>
         El sueldo de este empleado es <c:out value="${salario}"/> euros
-        ds-lklnsdlnsdlkn
     </div>
 </c:if>
 
