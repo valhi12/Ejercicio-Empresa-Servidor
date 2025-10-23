@@ -24,14 +24,37 @@ public class EmpleadoRepository {
                 Character sexo = rs.getString("sexo").toCharArray()[0];
                 Integer categoria = rs.getInt("categoria");
                 Integer anyos = rs.getInt("anyos");
-                Integer años_trabajados = rs.getInt("años_trabajados");
                 list.add(new Empleado(nombre, sexo, dni, categoria, anyos));
             }
 
             return list;
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RepositoryException(e.getMessage());
         }
     }
+
+    public static Double findByDni(String dni) throws RepositoryException {
+
+        final String salarios = "SELECT sueldo FROM nomina WHERE dni = ?";
+
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement stm = conn.prepareStatement(salarios);
+            stm.setString(1, dni);
+            ResultSet rs = stm.executeQuery();
+            Double salario = 0.0;
+
+            if (rs.next()) {
+                salario = rs.getDouble("sueldo");
+            }
+
+            return salario;
+
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage());
+        }
+    }
+
+
 }
