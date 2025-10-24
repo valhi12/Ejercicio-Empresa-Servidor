@@ -5,7 +5,7 @@
     <div class="container">
         <div class="main-content">
             <h1>Nuestros Empleados</h1>
-            <table class="empleados-table">
+            <table class="empleados-table" style="border: 2px solid">
                 <thead>
                 <tr>
                     <th>Nombre</th>
@@ -15,7 +15,7 @@
                     <th>Anyos</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody style="border: 2px solid">
                 <c:forEach var="item" items="${list}">
                     <tr>
                         <td><c:out value="${item.nombre}" /></td>
@@ -30,3 +30,5 @@
         </div>
     </div>
 </div>
+
+<%@ include file="footer.jsp"%>

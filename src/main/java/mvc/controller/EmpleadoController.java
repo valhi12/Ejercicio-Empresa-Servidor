@@ -40,6 +40,10 @@ public class EmpleadoController extends HttpServlet {
                 case "mostrarSalarioEmpleados":
                     mostrarSalarioEmpleados(request, response);
                     break;
+                case "modificarDatosEmpleados":
+                    modificarDatosEmpleados(request, response);
+                    break;
+
             }
         }
     }
@@ -92,5 +96,20 @@ public class EmpleadoController extends HttpServlet {
             rd.forward(request, response);
         }
 
+    }
+
+    private void modificarDatosEmpleados(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*String campoBusqueda = request.getParameter("campoBusqueda");
+        String valorBusqueda = request.getParameter("valorBusqueda");
+        try {
+            if (campoBusqueda == null || campoBusqueda.isEmpty() || valorBusqueda == null || valorBusqueda.isEmpty()) {
+                RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+                rd.forward(request, response);
+            }else{
+                Double salario = EmpleadoService.findByField
+            }
+        }catch (){
+
+        }*/
     }
 }

@@ -43,7 +43,7 @@ public class EmpleadoRepository {
             PreparedStatement stm = conn.prepareStatement(salarios);
             stm.setString(1, dni);
             ResultSet rs = stm.executeQuery();
-            Double salario = 0.0;
+            Double salario = null;
 
             if (rs.next()) {
                 salario = rs.getDouble("sueldo");
@@ -55,6 +55,9 @@ public class EmpleadoRepository {
             throw new RepositoryException(e.getMessage());
         }
     }
+
+
+
 
 
 }
