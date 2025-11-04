@@ -72,7 +72,7 @@ public class EmpleadoController extends HttpServlet {
         String dni = request.getParameter("dni");
         try {
             if (dni == null) {
-                RequestDispatcher rd = request.getRequestDispatcher("mostrarSalario.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("mostrarSalarioDni.jsp");
                 rd.forward(request, response);
 
             }else {
@@ -80,14 +80,13 @@ public class EmpleadoController extends HttpServlet {
 
                 if (empleado != null) {
                     request.setAttribute("salario", empleado);
-                    RequestDispatcher rd = request.getRequestDispatcher("mostrarSalario.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("mostrarSalarioDni.jsp");
                     rd.forward(request, response);
                 }else {
                     request.setAttribute("Error", "Se ha producido un problema al intentar acceder al respositorio de datos");
                     RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
                 }
             }
-
 
         } catch (RepositoryException re) {
             re.printStackTrace();
@@ -99,17 +98,29 @@ public class EmpleadoController extends HttpServlet {
     }
 
     private void modificarDatosEmpleados(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*String campoBusqueda = request.getParameter("campoBusqueda");
+        String campoBusqueda = request.getParameter("campoBusqueda");
         String valorBusqueda = request.getParameter("valorBusqueda");
+
         try {
             if (campoBusqueda == null || campoBusqueda.isEmpty() || valorBusqueda == null || valorBusqueda.isEmpty()) {
-                RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("mostrarSalario.jsp");
                 rd.forward(request, response);
             }else{
-                Double salario = EmpleadoService.findByField
+                Double salario = EmpleadoService.findByField(campoBusqueda, valorBusqueda);
+                        if(salario != null) {
+                            request.setAttribute("salario", salario);
+                            RequestDispatcher rd = request.getRequestDispatcher("mostrarSalario.jsp");
+                            rd.forward(request, response);
+                        }else{
+                            request.setAttribute("Error", "Se ha producido un problema al intentar acceder al respositorio de datos");
+                            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+                        }
             }
-        }catch (){
-
-        }*/
+        }catch (RepositoryException re){
+            re.printStackTrace();
+            request.setAttribute("Error", "Se ha producido un problema al intentar acceder al respositorio de datos");
+            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+            rd.forward(request, response);
+        }
     }
 }

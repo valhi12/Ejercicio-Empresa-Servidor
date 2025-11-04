@@ -3,7 +3,6 @@ package mvc.model.repository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import mvc.excepciones.RepositoryException;
 import mvc.model.entify.Empleado;
 
@@ -56,8 +55,24 @@ public class EmpleadoRepository {
         }
     }
 
+    public static Double findByField(String fieldName, String fieldValue) throws RepositoryException{
 
+        final String salarios = "SELECT n.sueldo FROM nomina n JOIN empleado e ON n.dni = e.dni WHERE e." + fieldName + " = ?";
 
+        try{
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement stm = conn.prepareStatement(salarios);
+            stm.setString(1, fieldValue);
+            ResultSet rs = stm.executeQuery();
+            Double salario = null;
 
+            if (rs.next()) {
+                salario = rs.getDouble("sueldo");
+            }
 
+            return salario;
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage());
+        }
+    }
 }
