@@ -6,6 +6,10 @@ import java.util.List;
 import mvc.excepciones.RepositoryException;
 import mvc.model.entify.Empleado;
 
+
+/*El patrón Data Access Object está implementado en esta clase porque su función es centralizar toda la lógica de acceso a la base de datos. Este patrón actúa como la única forma de comunicación entre la aplicación y el almacenamiento, ya que es la única parte del código que maneja directamente la obtención de la Connection, la preparación de sentencias SQL (Tales como "SELECT * FROM empleado") y la iteración sobre el ResultSet. Al realizar su función, el patrón separa lo que hagamos en el proyecto de los detalles de la base de datos. Esto asegura que si se cambia de MySQL a otra base de datos, solo esta clase necesite ser modificada y no la lógica de todas las demás.*/
+
+
 public class EmpleadoRepository {
     private static final String SELECT_ALL = "SELECT * FROM empleado";
 
