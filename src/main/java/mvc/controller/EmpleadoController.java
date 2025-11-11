@@ -18,10 +18,10 @@ import java.io.IOException;
 import java.util.List;
 
 
-/*El patrón Model-View-Controller está presente porque el código separa las responsabilidades en tres partes. La clase EmpleadoController es el Controlador, que recibe la petición del usuario, decide qué hacer, y le pide ayuda al EmpleadoService para manejar los datos. Una vez que EmpleadoService le ha pasado los datos, el Controlador elige qué página web (Como findAllEmpleados.jsp) mostrar al usuario con los resultados. Mostrará la página que le indiquemos.*/
+/*El patrón Model-View-Controller está presente en la clase EmpleadoController porque el código separa las responsabilidades en tres partes. La clase EmpleadoController es el Controlador, que recibe la petición del usuario, decide qué hacer, y le pide ayuda al EmpleadoService para manejar los datos. Una vez que EmpleadoService le ha pasado los datos, el Controlador elige qué página web (Como findAllEmpleados.jsp) mostrar al usuario con los resultados. Mostrará la página que le indiquemos.*/
 
 
-/*El patrón Front Controller está presente en el proyecto porque hay un solo punto de entrada para todas las acciones relacionadas con empleados. Es decir, en lugar de tener una clase para "findAllEmpleados", otra para "mostrarSalarioEmpleados" y otra para "modificarDatosEmpleados", la clase EmpleadoController centraliza todas estas peticiones (Gracias al @WebServlet). Usamos en el switch un parámetro llamado opcion para saber qué tarea en concreto debe realizar, simplificando el manejo de las peticiones web.*/
+/*El patrón Front Controller está presente en la clase EmpleadoController porque hay un solo punto de entrada para todas las acciones relacionadas con empleados. Es decir, en lugar de tener una clase para "findAllEmpleados", otra para "mostrarSalarioEmpleados" y otra para "modificarDatosEmpleados", la clase EmpleadoController centraliza todas estas peticiones (Gracias al @WebServlet). Usamos en el switch un parámetro llamado opcion para saber qué tarea en concreto debe realizar, simplificando el manejo de las peticiones web.*/
 
 @WebServlet("/EmpleadoController")
 public class EmpleadoController extends HttpServlet {
